@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kaam Awaaz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7ec;--card:#fff;--ink:#22190f;--mut:#7d6b58;--brand:#f76707;--brand2:#e03e00;--navy:#1d2b4f;--ok:#12a05c;--no:#d6336c;--line:#f3e4d0;--sh:0 8px 24px rgba(140,70,0,.10);--sh2:0 3px 10px rgba(140,70,0,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:"Noto Sans Devanagari",system-ui,-apple-system,sans-serif;color:var(--ink);font-size:17px;
+ background:radial-gradient(circle at 0 0,#ffe3c2 0,transparent 38%),radial-gradient(circle at 100% 20%,#ffe9d6 0,transparent 35%),var(--bg);background-attachment:fixed;min-height:100vh}
+h1,h2,.big,.sm,.role b,.hero h2,.wb,.amt,.stats b,.pn{font-family:"Baloo 2","Noto Sans Devanagari",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:8px;padding:10px 14px;background:linear-gradient(135deg,#ff8a1f,#e03e00);color:#fff;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px rgba(224,62,0,.35);border-radius:0 0 22px 22px}
+header h1{font-size:17px;margin:0;flex:1;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header button{background:rgba(255,255,255,.22);border:0;color:#fff;font-size:15px;padding:8px 13px;border-radius:12px;backdrop-filter:blur(4px)}
+main{max-width:560px;margin:0 auto;padding:16px 14px 90px}
+main.fx>*{animation:up .35s ease}
+main.fx>*:nth-child(2){animation-delay:.04s}main.fx>*:nth-child(3){animation-delay:.08s}main.fx>*:nth-child(4){animation-delay:.12s}main.fx>*:nth-child(5){animation-delay:.16s}
+@keyframes up{from{transform:translateY(10px)}to{transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:15px;margin:12px 0;box-shadow:var(--sh2)}
+.big{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;font-size:21px;font-weight:700;border:0;border-radius:18px;background:linear-gradient(135deg,#ff8a1f,#e8590c);color:#fff;margin:10px 0;box-shadow:0 8px 18px rgba(232,89,12,.30);transition:transform .12s,box-shadow .12s}
+.big:active,.sm:active,.tile:active,.chip:active,.role:active{transform:scale(.96)}
+.big.ok{background:linear-gradient(135deg,#27c27a,#0c8f55);box-shadow:0 8px 18px rgba(18,160,92,.30)}
+.big.no{background:linear-gradient(135deg,#f06595,#c2255c);box-shadow:0 8px 18px rgba(214,51,108,.28)}
+.big.gray{background:linear-gradient(135deg,#8d7b68,#6c5b49);box-shadow:none}
+.big.line{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:var(--sh2)}
+.big:disabled{opacity:.55;box-shadow:none}
+.mic{position:relative;width:118px;height:118px;border-radius:50%;font-size:50px;border:0;background:linear-gradient(135deg,#ff8a1f,#e03e00);color:#fff;display:block;margin:16px auto;box-shadow:0 10px 26px rgba(232,89,12,.45)}
+.mic::before,.mic::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:3px solid rgba(247,103,7,.35);animation:ring 2.4s ease-out infinite}
+.mic::after{animation-delay:1.2s}
+@keyframes ring{from{transform:scale(.92);opacity:.9}to{transform:scale(1.35);opacity:0}}
+.mic.on{background:linear-gradient(135deg,#f06595,#c2255c);animation:p 1s infinite}
+.mic.on::before,.mic.on::after{border-color:rgba(214,51,108,.45)}
+@keyframes p{50%{transform:scale(1.07)}}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.tile{background:#fff;border:2px solid var(--line);border-radius:16px;padding:10px 2px;text-align:center;font-size:14.5px;line-height:1.25;box-shadow:var(--sh2);transition:all .15s}
+.tile b{display:block;font-size:32px}
+.tile.sel{border-color:var(--brand);background:linear-gradient(180deg,#fff4e6,#ffe8cc);box-shadow:0 6px 16px rgba(247,103,7,.22);transform:translateY(-2px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:15.5px;transition:all .15s}
+.chip.sel{border-color:var(--brand);background:linear-gradient(135deg,#ff8a1f,#e8590c);color:#fff;font-weight:600}
+h2{font-size:21px;margin:18px 0 6px;font-weight:800}
+.mut{color:var(--mut);font-size:14.5px}
+.row{display:flex;align-items:center;gap:10px}.sp{flex:1;min-width:0}
+.badge{font-size:12.5px;padding:3px 10px;border-radius:999px;background:#f1ece4;white-space:nowrap;font-weight:600}
+.badge.g{background:#d3f9e4;color:#0b6b3a}.badge.y{background:#fff0bf;color:#7a5200}.badge.r{background:#ffdfe9;color:#a3194a}
+input[type=text],input[type=number]{width:100%;padding:13px 14px;font-size:18px;border:2px solid var(--line);border-radius:14px;background:#fff;outline:0;transition:border .15s,box-shadow .15s}
+input:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(247,103,7,.15)}
+.stepper button{width:44px;height:44px;border-radius:14px;border:2px solid var(--line);background:#fff;font-size:24px;box-shadow:var(--sh2)}
+.sm{padding:10px 15px;border:0;border-radius:13px;font-size:16px;background:linear-gradient(135deg,#ff8a1f,#e8590c);color:#fff;font-weight:700;transition:transform .12s}
+.sm.ok{background:linear-gradient(135deg,#27c27a,#0c8f55)}.sm.no{background:linear-gradient(135deg,#f06595,#c2255c)}
+.sm.line{background:#fff;color:var(--ink);border:2px solid var(--line);font-weight:600}
+.sm.glass{background:rgba(255,255,255,.22);color:#fff;border:0}
+.stars button{font-size:32px;background:none;border:0;padding:2px;color:#f59f00}
+.note{font-size:13px;color:var(--mut);text-align:center;margin-top:18px}
+.miss{outline:3px dashed #ffa94d;outline-offset:2px}
+.wallet{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#1d2b4f,#33498a);color:#fff;border-radius:20px;padding:14px 16px;margin:0 0 12px;box-shadow:0 10px 24px rgba(29,43,79,.35);position:relative;overflow:hidden}
+.wallet::after{content:"";position:absolute;right:-30px;top:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.08)}
+.wl{font-size:13px;opacity:.8}.wb{font-size:30px;font-weight:800;line-height:1.1}
+.money{background:linear-gradient(135deg,#f4fbf7,#eaf7f0);border:1px solid #cfeedd;border-radius:14px;padding:10px 12px;font-size:15px;margin-top:10px}
+.money div{display:flex;justify-content:space-between;align-items:center}
+.money b{font-family:"Baloo 2",sans-serif;font-size:19px;color:#0b6b3a}
+.pay{display:inline-block;margin-top:6px;font-size:13.5px;padding:4px 11px;border-radius:999px;background:#e3efff;color:#0b4a7a;font-weight:600}
+.pay.g{background:#d3f9e4;color:#0b6b3a}.pay.r{background:#fff0bf;color:#7a5200}
+.msgs{display:flex;flex-direction:column;gap:8px;min-height:180px}
+.msg{max-width:85%;padding:10px 13px;border-radius:18px 18px 18px 4px;background:#fff;border:1px solid var(--line);font-size:16.5px;box-shadow:var(--sh2)}
+.msg.me{align-self:flex-end;background:linear-gradient(135deg,#fff0dc,#ffe2bd);border-color:#ffd8a8;border-radius:18px 18px 4px 18px}
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#fff1de,#ffe0b8);font-size:26px;flex:none}
+.avatar.big{width:58px;height:58px;font-size:32px;background:rgba(255,255,255,.25);border-radius:18px}
+/* home */
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#1d2b4f 0%,#33498a 55%,#f76707 140%);color:#fff;border-radius:26px;padding:22px 18px;margin:0 0 14px;box-shadow:0 14px 30px rgba(29,43,79,.35)}
+.hero::after{content:"";position:absolute;right:-40px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero h2{margin:8px 0 4px;font-size:27px;line-height:1.2}
+.hero p{margin:0;opacity:.88;font-size:15px}
+.emojis{display:flex;gap:8px;font-size:28px}.emojis span{animation:bob 2.6s ease-in-out infinite}
+.emojis span:nth-child(2){animation-delay:.2s}.emojis span:nth-child(3){animation-delay:.4s}.emojis span:nth-child(4){animation-delay:.6s}.emojis span:nth-child(5){animation-delay:.8s}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.roles{display:grid;gap:12px}
+.role{display:flex;align-items:center;gap:14px;text-align:left;border:0;border-radius:22px;padding:16px;color:#fff;transition:transform .12s;width:100%}
+.role .ri{font-size:38px;background:rgba(255,255,255,.22);border-radius:18px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;flex:none}
+.role b{display:block;font-size:22px;line-height:1.15}.role small{display:block;opacity:.9;font-size:14px;margin-top:2px}
+.role.r1{background:linear-gradient(135deg,#ff8a1f,#e03e00);box-shadow:0 12px 24px rgba(232,89,12,.35)}
+.role.r2{background:linear-gradient(135deg,#27c27a,#0b8a50);box-shadow:0 12px 24px rgba(18,160,92,.30)}
+.trust{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 4px}
+.trust span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13.5px;box-shadow:var(--sh2);font-weight:600}
+.link{display:block;margin:8px auto 0;background:none;border:0;color:var(--mut);font-size:15px;text-decoration:underline}
+/* worker profile */
+.prof{background:linear-gradient(135deg,#ff8a1f,#d9480f);color:#fff;border-radius:24px;padding:16px;margin:0 0 12px;box-shadow:0 12px 26px rgba(217,72,15,.35)}
+.pn{font-size:24px;font-weight:800;line-height:1.1;display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.stats div{background:rgba(255,255,255,.2);border-radius:14px;padding:8px 4px;text-align:center}
+.stats b{display:block;font-size:19px;line-height:1.15}.stats span{display:block;font-size:11.5px;opacity:.92}
+.prof .pr{margin-top:10px;font-size:14px;opacity:.95}
+/* job cards */
+.job{border-left:6px solid var(--line)}
+.job.st-sent{border-left-color:#fab005}.job.st-accepted{border-left-color:#228be6}.job.st-done{border-left-color:#12a05c}
+.job.st-cancelled,.job.st-noshow,.job.st-withdrawn,.job.st-declined{border-left-color:#d6336c}.job.st-disputed{border-left-color:#fab005}
+.celebrate{position:relative;text-align:center;padding:30px 15px}
+.celebrate .pop{font-size:60px;animation:pop .6s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.confetti{position:absolute;left:0;right:0;top:0;height:100%;overflow:hidden;pointer-events:none}
+.confetti i{position:absolute;top:-20px;font-style:normal;font-size:22px;animation:fall 2.2s ease-in both}
+@keyframes fall{to{transform:translateY(260px) rotate(300deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><button data-act="home" aria-label="home">🏠</button><h1>कामआवाज़ · Kaam Awaaz</h1><button data-act="lang"></button></header>
+<main id="app"></main>
+<script>
+const TRADES=[
+ {id:'painter',ic:'🎨',hi:'पेंटर',en:'Painter',pay:700,kw:['पेंटर','पेन्टर','पुताई','रंगाई','रंग','painter','paint','penter']},
+ {id:'electrician',ic:'💡',hi:'इलेक्ट्रीशियन',en:'Electrician',pay:800,kw:['इलेक्ट्रीशियन','इलेक्ट्रिशियन','बिजली मिस्त्री','बिजली','electrician','bijli mistri','bijli mistry','bijli','light wala']},
+ {id:'plumber',ic:'🔧',hi:'प्लंबर',en:'Plumber',pay:750,kw:['प्लंबर','प्लम्बर','नल','पाइप','plumber','nal ','pipe']},
+ {id:'mason',ic:'🧱',hi:'राजमिस्त्री',en:'Mason',pay:900,kw:['राजमिस्त्री','राज मिस्त्री','मिस्त्री','चिनाई','mason','mistri','raj mistri']},
+ {id:'carpenter',ic:'🪚',hi:'बढ़ई',en:'Carpenter',pay:850,kw:['बढ़ई','बढ़ई','कारपेंटर','कारपेन्टर','लकड़ी','carpenter','badhai']},
+ {id:'helper',ic:'🏗️',hi:'मज़दूर',en:'Helper',pay:550,kw:['मज़दूर','मजदूर','हेल्पर','मजदूरी','labour','labor','helper','majdoor','mazdoor']},
+];
+const CK_KW={saket:['साकेत','saket'],dwarka:['द्वारका','dwarka'],rohini:['रोहिणी','रोहिनी','rohini'],lajpat:['लाजपत','lajpat'],karolbagh:['करोल बाग','करोलबाग','karol bagh','karol'],janakpuri:['जनकपुरी','janakpuri'],laxmi:['लक्ष्मी नगर','लक्ष्मीनगर','laxmi','lakshmi'],okhla:['ओखला','okhla']};
+const NUM={'एक':1,'दो':2,'तीन':3,'चार':4,'पांच':5,'पाँच':5,'छह':6,'छः':6,'छे':6,'सात':7,'आठ':8,'नौ':9,'दस':10,'ek':1,'do':2,'teen':3,'char':4,'paanch':5,'panch':5,'chhe':6,'saat':7,'aath':8,'nau':9,'das':10,'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,'nine':9,'ten':10};
+const QUICK=[{hi:'मैं आ रहा हूँ',en:'I am coming'},{hi:'कहाँ आना है?',en:'Where should I come?'},{hi:'कितने बजे आना है?',en:'What time?'},{hi:'पहुँच गया',en:'I have arrived'},{hi:'थोड़ी देर होगी',en:'I will be a little late'}];
+const T={
+ tag:{hi:'काम बोलकर पाएं, काम बोलकर दें',en:'Speak to find work. Speak to hire.'},
+ safe:{hi:'🔒 पैसा ऐप में सुरक्षित · फ़ोन नंबर छुपे रहते हैं',en:'🔒 Money held safely in the app · phone numbers stay hidden'},
+ needWorker:{hi:'मुझे काम चाहिए',en:'I need work'},needEmp:{hi:'मुझे कारीगर चाहिए',en:'I need a worker'},
+ ledger:{hi:'हिसाब (डैशबोर्ड)',en:'Dashboard'},
+ tapSpeak:{hi:'माइक दबाकर बोलें',en:'Tap the mic and speak'},
+ eg:{hi:'जैसे: "कल साकेत में दो पेंटर चाहिए, सात सौ रुपये"',en:'e.g. "Tomorrow 2 painters in Saket, 700 rupees"'},
+ orType:{hi:'या यहाँ लिखें',en:'or type here'},
+ trade:{hi:'कौन सा काम?',en:'Which trade?'},where:{hi:'कहाँ?',en:'Where?'},
+ howmany:{hi:'कितने लोग?',en:'How many?'},pay:{hi:'दिहाड़ी (₹ प्रति दिन)',en:'Daily wage (₹/day)'},when:{hi:'कब?',en:'When?'},
+ today:{hi:'आज',en:'Today'},tomorrow:{hi:'कल',en:'Tomorrow'},dayafter:{hi:'परसों',en:'Day after'},
+ send:{hi:'भेजें',en:'Send request'},
+ fillMore:{hi:'काम और जगह चुनें',en:'Pick trade and place'},regMissing:{hi:'नाम, काम और जगह चुनें',en:'Add name, trade and place'},
+ wallet:{hi:'आपका वॉलेट',en:'Your wallet'},topup:{hi:'+₹1000 जोड़ें',en:'Add ₹1000'},
+ perWorker:{hi:'हर कारीगर के लिए',en:'Per worker'},wage:{hi:'दिहाड़ी',en:'Wage'},svc:{hi:'सेवा शुल्क',en:'Service fee'},
+ payNow:{hi:'कुल (जब कारीगर हाँ कहे तब कटेगा)',en:'Total (charged when a worker accepts)'},
+ lowWallet:{hi:'वॉलेट में पैसे कम हैं — पहले जोड़ें',en:'Wallet too low — add money first'},
+ alerts:{hi:'कारीगरों को अलर्ट भेजा गया',en:'Workers alerted'},
+ st_accepted:{hi:'हाँ कहा',en:'Accepted'},st_sent:{hi:'अलर्ट गया',en:'Alert sent'},st_queued:{hi:'कतार में',en:'Queued'},st_declined:{hi:'मना किया',en:'Declined'},st_done:{hi:'काम पूरा ✓',en:'Job done ✓'},
+ st_cancelled:{hi:'रद्द',en:'Cancelled'},st_noshow:{hi:'नहीं आया',en:'No-show'},st_withdrawn:{hi:'कारीगर पीछे हटा',en:'Worker withdrew'},st_disputed:{hi:'विवाद',en:'Disputed'},
+ nextWave:{hi:'अगले कारीगरों को भी अलर्ट भेजें',en:'Alert next workers'},
+ arrived:{hi:'आ गया ✓',en:'Arrived ✓'},rate:{hi:'रेटिंग दें',en:'Rate'},
+ cancel:{hi:'रद्द करें',en:'Cancel job'},noshow:{hi:'नहीं आया',en:'No-show'},dispute:{hi:'शिकायत',en:'Dispute'},
+ confCancel:{hi:'आज का काम रद्द करने पर कारीगर को दिहाड़ी का 25% मिलेगा, बाकी पैसे वापस। रद्द करें?',en:'Cancelling a job that is today pays the worker 25% of the wage; the rest is refunded. Cancel?'},
+ confCancelEarly:{hi:'पूरे पैसे वापस मिलेंगे। रद्द करें?',en:'You get a full refund. Cancel?'},
+ confNoShow:{hi:'कारीगर नहीं आया? पूरे पैसे वापस होंगे और उसकी रेटिंग गिरेगी।',en:'Worker did not come? You are refunded in full and their rating drops.'},
+ confWithdraw:{hi:'पीछे हटने पर आपकी रेटिंग और अलर्ट में प्राथमिकता घटेगी। पक्का?',en:'Pulling out lowers your rating and alert priority. Sure?'},
+ pickWorker:{hi:'आप कौन हैं?',en:'Who are you?'},newWorker:{hi:'नया कारीगर जुड़ें',en:'Join as new worker'},
+ name:{hi:'नाम',en:'Name'},upi:{hi:'UPI आईडी (पैसे यहाँ आएंगे)',en:'UPI ID (for payouts)'},join:{hi:'जुड़ें',en:'Join'},
+ newAlerts:{hi:'नए काम',en:'New jobs'},active:{hi:'चल रहे काम',en:'Active jobs'},past:{hi:'पुराने काम',en:'Past jobs'},
+ noAlerts:{hi:'अभी कोई नया काम नहीं',en:'No new jobs right now'},
+ yes:{hi:'हाँ',en:'Yes'},no:{hi:'ना',en:'No'},sayYesNo:{hi:'"हाँ" या "ना" बोलें',en:'Say "yes" or "no"'},
+ youGet:{hi:'आपको मिलेंगे',en:'You get'},afterFee:{hi:'({p}% शुल्क के बाद)',en:'(after {p}% fee)'},
+ finished:{hi:'काम हो गया',en:'Job finished'},waitEmp:{hi:'मालिक की पुष्टि का इंतज़ार',en:'Waiting for employer to confirm'},
+ waitWk:{hi:'कारीगर की पुष्टि का इंतज़ार',en:'Waiting for worker to confirm'},
+ withdraw:{hi:'पीछे हटें',en:'Withdraw'},
+ chat:{hi:'बात करें',en:'Chat'},back:{hi:'← वापस',en:'← Back'},sendMsg:{hi:'भेजें',en:'Send'},msgPh:{hi:'संदेश लिखें…',en:'Type a message…'},
+ chatNote:{hi:'फ़ोन नंबर यहाँ नहीं दिखते। सारी बात ऐप में ही होती है।',en:'Phone numbers are hidden. All contact happens in the app.'},
+ jobs:{hi:'पक्के काम',en:'Confirmed jobs'},earned:{hi:'कुल कमाई',en:'Total earned'},
+ priority:{hi:'अलर्ट में नंबर',en:'Alert priority'},noshows:{hi:'छूटे काम',en:'Missed'},
+ filled:{hi:'काम भर चुका',en:'Already filled'},
+ simNote:{hi:'पेमेंट, वॉलेट और अलर्ट कॉल सिम्युलेटेड हैं (डेमो)।',en:'Payments, wallet and alert calls are simulated (demo).'},
+ totals:{hi:'पैसे का हिसाब',en:'Money overview'},reqs:{hi:'रिक्वेस्ट',en:'Requests'},
+ held:{hi:'ऐप में सुरक्षित (एस्क्रो)',en:'Held in escrow'},paidOut:{hi:'कारीगरों को भुगतान',en:'Paid to workers'},
+ refunded:{hi:'मालिकों को वापस',en:'Refunded to employers'},comp:{hi:'देर से रद्द करने का मुआवज़ा',en:'Late-cancel compensation'},
+ revenue:{hi:'ऐप की कमाई (दोनों शुल्क)',en:'Platform revenue (both fees)'},
+ disputes:{hi:'खुले विवाद',en:'Open disputes'},payWorker:{hi:'कारीगर को दें',en:'Pay worker'},refundEmp:{hi:'मालिक को लौटाएं',en:'Refund employer'},
+ reset:{hi:'डेमो रीसेट करें',en:'Reset demo'},leaderboard:{hi:'कारीगरों की रैंकिंग',en:'Worker leaderboard'},
+ micFail:{hi:'आवाज़ पहचान इस ब्राउज़र में नहीं है — नीचे लिखें या चुनें',en:'Voice not supported in this browser — type or tap below'},
+ noSpeech:{hi:'सुनाई नहीं दिया, फिर कोशिश करें',en:'Did not catch that, try again'},
+ callSim:{hi:'📞 आवाज़ कॉल भेजी गई (सिम्युलेटेड)',en:'📞 Voice call sent (simulated)'},
+ payTitle:{hi:'वॉलेट में पैसे जोड़ें',en:'Add money to wallet'},amount:{hi:'कितने रुपये?',en:'How much?'},
+ upiApps:{hi:'UPI ऐप से',en:'Pay with UPI'},cardsT:{hi:'कार्ड से',en:'Pay with card'},otherUpi:{hi:'किसी और UPI आईडी से',en:'Other UPI ID'},cardM:{hi:'क्रेडिट / डेबिट / RuPay कार्ड',en:'Credit / Debit / RuPay card'},
+ demoBanner:{hi:'⚠ डेमो — पैसे असली नहीं हैं। असली कार्ड की जानकारी कभी न डालें। टेस्ट कार्ड: 4111 1111 1111 1111',en:'⚠ DEMO — no real money. Never enter real card details. Test card: 4111 1111 1111 1111'},
+ enterUpi:{hi:'अपनी UPI आईडी डालें (जैसे name@okaxis)',en:'Enter your UPI ID (e.g. name@okaxis)'},badUpi:{hi:'UPI आईडी सही नहीं है',en:'That UPI ID looks invalid'},
+ cardNo:{hi:'कार्ड नंबर',en:'Card number'},expiry:{hi:'MM/YY',en:'MM/YY'},cvv:{hi:'CVV',en:'CVV'},badCard:{hi:'कार्ड की जानकारी सही नहीं है',en:'Card details look invalid'},
+ payBtn:{hi:'भुगतान करें',en:'Pay'},cont:{hi:'आगे',en:'Continue'},
+ approveMsg:{hi:'अपने फ़ोन पर {app} खोलें और ₹{amt} की रिक्वेस्ट मंज़ूर करें',en:'Open {app} on your phone and approve the ₹{amt} request'},
+ approved:{hi:'✓ मंज़ूर कर दिया (डेमो)',en:'✓ I approved it (demo)'},declineBtn:{hi:'✗ मना करें',en:'✗ Decline'},
+ processing:{hi:'भुगतान हो रहा है…',en:'Processing payment…'},success:{hi:'पैसे जुड़ गए!',en:'Money added!'},failed:{hi:'भुगतान नहीं हुआ',en:'Payment failed'},
+ declinedCard:{hi:'कार्ड मना हो गया (टेस्ट कार्ड)',en:'Card declined (test card)'},declinedUpi:{hi:'भुगतान मंज़ूर नहीं हुआ',en:'Payment was not approved'},
+ tryAgain:{hi:'फिर कोशिश करें',en:'Try again'},doneBtn:{hi:'ठीक है',en:'Done'},history:{hi:'पिछले भुगतान',en:'Recent top-ups'},newBal:{hi:'नया बैलेंस',en:'New balance'},ref:{hi:'रेफ़रेंस',en:'Ref'},
+ payoutTo:{hi:'पैसे यहाँ आएंगे',en:'Payout to'},enterPayout:{hi:'पैसे पाने की UPI आईडी डालें',en:'Enter UPI ID to receive payouts'},topups:{hi:'वॉलेट टॉप-अप',en:'Wallet top-ups'},
+ wkWelcome:{hi:'अपना मोबाइल नंबर डालें',en:'Enter your mobile number'},phoneNo:{hi:'10 अंकों का मोबाइल नंबर',en:'10-digit mobile number'},
+ sendOtp:{hi:'OTP भेजें',en:'Send OTP'},verifyOtp:{hi:'पक्का करें',en:'Verify'},otpPh:{hi:'OTP डालें',en:'Enter OTP'},
+ otpSent:{hi:'OTP भेजा गया (डेमो OTP: 1234)',en:'OTP sent (demo OTP: 1234)'},demoLogin:{hi:'डेमो के लिए: 9000000001 (रमेश, पेंटर) · OTP 1234',en:'Demo: 9000000001 (Ramesh, painter) · OTP 1234'},
+ badPhone:{hi:'सही 10 अंकों का नंबर डालें',en:'Enter a valid 10-digit number'},newHere:{hi:'आप नए हैं! थोड़ी जानकारी दें',en:'Welcome! Tell us a little about you'},
+ yourName:{hi:'आपका नाम',en:'Your name'},sayAbout:{hi:'बोलें: "मैं पेंटर हूँ, साकेत में"',en:'Say: "I am a painter in Saket"'},logout:{hi:'बदलें',en:'Switch'},
+ heroSub:{hi:'दिल्ली के कारीगरों और काम देने वालों के बीच सीधा, सुरक्षित रास्ता',en:"A direct, safe link between Delhi's workers and the people who hire them"},
+ roleW:{hi:'काम के अलर्ट पाएं, पूरा हिसाब पक्का',en:'Get job alerts with guaranteed pay'},roleE:{hi:'बोलकर कारीगर बुलाएं',en:'Speak a job, get workers'},
+ tEscrow:{hi:'पैसा सुरक्षित',en:'Escrow pay'},tVoice:{hi:'आवाज़ से चलता है',en:'Voice-first'},tHidden:{hi:'नंबर छुपे रहते हैं',en:'Numbers hidden'},
+ rating:{hi:'रेटिंग',en:'Rating'},
+ lang:{hi:'English',en:'हिंदी'},
+};
+let eid='e'+Math.random().toString(36).slice(2,8);
+try{eid=localStorage.eid||(localStorage.eid=eid)}catch(e){}
+let lang0='hi';try{lang0=localStorage.lang||'hi'}catch(e){}
+const S={lg:null,pay:null,lang:lang0,view:'home',back:'home',data:null,wid:null,rid:null,chat:null,cd:'',listening:false,draft:{trade:null,chowk:null,count:1,pay:null,date:1,heard:''}};
+const t=k=>T[k][S.lang];
+const trade=id=>TRADES.find(x=>x.id===id);
+const ckn=id=>S.data.chowks.find(c=>c.id===id)[S.lang];
+const wk=id=>S.data.workers.find(w=>w.id===id);
+const wname=w=>S.lang==='hi'?w.nameHi:w.name;
+const tn=id=>trade(id)[S.lang];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $app=document.getElementById('app');
+const rnd=x=>Math.floor(x+.5);
+const empFee=w=>Math.max(S.data.config.empMin,rnd(w*S.data.config.empPct));
+const wFee=w=>rnd(w*S.data.config.workerPct);
+const balance=()=>(S.data.employers[eid]||{balance:2000}).balance;
+const wpct=()=>Math.round(S.data.config.workerPct*100);
+const rs=n=>'₹'+n;
+const dayWord=()=>S.lang==='hi'?'दिन':'day';
+
+/* ---------- voice ---------- */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function speak(text){
+  if(!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang=S.lang==='hi'?'hi-IN':'en-IN';u.rate=.9;
+  const v=speechSynthesis.getVoices().find(v=>v.lang.replace('_','-').startsWith(u.lang));if(v)u.voice=v;
+  speechSynthesis.speak(u);
+}
+function listen(cb){
+  if(!SR){alert(t('micFail'));return}
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  const r=new SR();r.lang=S.lang==='hi'?'hi-IN':'en-IN';r.interimResults=false;r.maxAlternatives=1;
+  S.listening=true;render();
+  r.onresult=e=>cb(e.results[0][0].transcript);
+  r.onerror=()=>{S.listening=false;render();speak(t('noSpeech'))};
+  r.onend=()=>{if(S.listening){S.listening=false;render()}};
+  r.start();
+}
+
+/* ---------- parsing a spoken request ---------- */
+function parseSpeech(raw){
+  let s=' '+raw.toLowerCase().replace(/[,।.?!"]/g,' ')+' ';
+  const out={};
+  const best=(list,get)=>{let b=null,n=0;for(const x of list)for(const k of get(x))if(s.includes(k)&&k.length>n){b=x.id;n=k.length}return b};
+  out.trade=best(TRADES,x=>x.kw);
+  out.chowk=best(S.data.chowks,c=>CK_KW[c.id]);
+  let m=s.match(/(\d+|\S+)\s*(सौ|sau|hundred)/);
+  if(m){const n=/^\d+$/.test(m[1])?+m[1]:NUM[m[1]];if(n){out.pay=n*100;s=s.replace(m[0],' ')}}
+  if(!out.pay){m=s.match(/\b(\d{3,5})\b/);if(m){out.pay=+m[1];s=s.replace(m[0],' ')}}
+  for(const tok of s.split(/\s+/)){if(/^\d{1,2}$/.test(tok)&&+tok>0){out.count=+tok;break}if(NUM[tok]){out.count=NUM[tok];break}}
+  if(/परसों|parson|day after/.test(s))out.date=2;else if(/आज|aaj|today/.test(s))out.date=0;else if(/कल|kal|tomorrow/.test(s))out.date=1;
+  return out;
+}
+function dateStr(off){const d=new Date();d.setDate(d.getDate()+off);const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`}
+function dateLabel(iso){const a=new Date(iso+'T00:00'),n=new Date(),b=new Date(n.getFullYear(),n.getMonth(),n.getDate());const diff=Math.round((a-b)/864e5);
+  return diff===0?t('today'):diff===1?t('tomorrow'):diff===2?t('dayafter'):iso}
+function summary(d){return `${d.count} ${tn(d.trade)}, ${ckn(d.chowk)}, ${[t('today'),t('tomorrow'),t('dayafter')][d.date]}, ₹${d.pay||trade(d.trade).pay}`}
+function reqLine(r){const get=r.pay-wFee(r.pay);return S.lang==='hi'
+  ?`${ckn(r.chowk)} में ${dateLabel(r.date)} ${r.count} ${tn(r.trade)} चाहिए। आपको ${get} रुपये मिलेंगे। हाँ या ना बोलें।`
+  :`${r.count} ${tn(r.trade)} needed in ${ckn(r.chowk)}, ${dateLabel(r.date)}. You will get ${get} rupees. Say yes or no.`}
+
+/* ---------- api ---------- */
+async function api(path,body){
+  const r=await fetch('/api/'+path,body===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const j=await r.json();if(!r.ok){alert(j.error||'error');throw new Error(j.error)}return j;
+}
+async function refresh(){S.data=await api('state');render()}
+
+/* ---------- shared bits ---------- */
+function walletBar(){return `<div class="wallet"><span style="font-size:30px">👛</span><div class="sp"><div class="wl">${t('wallet')}</div><div class="wb">${rs(balance())}</div></div><button class="sm glass" data-act="topup" style="background:rgba(255,255,255,.95);color:#1d2b4f">${t('topup')}</button></div>`}
+function badge(a){
+  const m={accepted:'g',sent:'y',queued:'',declined:'r',done:'g',cancelled:'r',noshow:'r',withdrawn:'r',disputed:'y'};
+  return `<span class="badge ${m[a.status]}">${t('st_'+a.status)}</span>`}
+function payTag(a,who){
+  const e=a.escrow;if(!e)return '';
+  const tot=e.wage+e.empFee,get=e.wage-e.workerFee;
+  if(a.payment==='held')return `<span class="pay">🔒 ${who==='emp'?rs(tot)+' '+(S.lang==='hi'?'ऐप में सुरक्षित':'held safely'):rs(get)+' '+(S.lang==='hi'?'आपके लिए सुरक्षित':'secured for you')}</span>`;
+  if(a.payment==='released')return `<span class="pay g">${who==='emp'?'✓ '+rs(tot)+' '+(S.lang==='hi'?'चुकाया':'paid'):'💸 '+rs(a.payout)+' → UPI'}</span>`;
+  if(a.payment==='refunded')return `<span class="pay r">↩ ${who==='emp'?rs(tot)+' '+(S.lang==='hi'?'वापस':'refunded'):(S.lang==='hi'?'पैसे वापस हुए':'refunded to employer')}</span>`;
+  if(a.payment==='compensated')return `<span class="pay r">${who==='emp'?'↩ '+rs(tot-a.compensation)+' · '+(S.lang==='hi'?'मुआवज़ा':'comp.')+' '+rs(a.compensation):'💸 '+(S.lang==='hi'?'मुआवज़ा':'Compensation')+' '+rs(a.compensation)}</span>`;
+  return '';}
+function stars(w,rid){return `<span class="stars">${[1,2,3,4,5].map(n=>`<button data-act="rate" data-rid="${rid}" data-w="${w}" data-n="${n}">☆</button>`).join('')}</span>`}
+function chatBtn(rid,wid,role,a){const n=a.messages.length;return `<button class="sm line" data-act="openChat" data-rid="${rid}" data-w="${wid}" data-role="${role}">💬 ${t('chat')}${n?` (${n})`:''}</button>`}
+
+/* ---------- views ---------- */
+function vHome(){return `
+ <div class="hero"><div class="emojis"><span>🎨</span><span>💡</span><span>🔧</span><span>🧱</span><span>🪚</span></div><h2>${t('tag')}</h2><p>${t('heroSub')}</p></div>
+ <div class="roles">
+  <button class="role r1" data-act="goWorker"><span class="ri">👷</span><span><b>${t('needWorker')}</b><small>${t('roleW')}</small></span></button>
+  <button class="role r2" data-act="go" data-v="emp"><span class="ri">🏠</span><span><b>${t('needEmp')}</b><small>${t('roleE')}</small></span></button>
+ </div>
+ <div class="trust"><span>🔒 ${t('tEscrow')}</span><span>🗣️ ${t('tVoice')}</span><span>🙈 ${t('tHidden')}</span></div>
+ <button class="link" data-act="go" data-v="ledger">📊 ${t('ledger')}</button>
+ <p class="note">${t('simNote')}</p>`}
+
+function priceBox(){
+  const d=S.draft;if(!d.trade)return '';
+  const wage=+d.pay||trade(d.trade).pay,f=empFee(wage),tot=wage+f;
+  return `<div class="money"><div><span>${t('perWorker')}</span></div><div><span>${t('wage')}</span><b>${rs(wage)}</b></div><div><span>${t('svc')} (${Math.round(S.data.config.empPct*100)}%)</span><b>${rs(f)}</b></div><div style="border-top:1px solid #dee2e6;margin-top:4px;padding-top:4px"><span>${t('payNow')}</span><b>${rs(tot)}${d.count>1?' × '+d.count:''}</b></div></div>`}
+
+function vEmp(){
+  const d=S.draft,ready=d.trade&&d.chowk;
+  const wage=d.trade?(+d.pay||trade(d.trade).pay):0,need=ready?d.count*(wage+empFee(wage)):0,low=ready&&balance()<need;
+  return `${walletBar()}
+ <button class="mic ${S.listening?'on':''}" data-act="micEmp">🎤</button>
+ <p style="text-align:center;margin:0"><b>${t('tapSpeak')}</b></p>
+ <p class="mut" style="text-align:center">${t('eg')}</p>
+ <input type="text" id="typed" placeholder="${t('orType')}" value="${esc(d.heard)}">
+ <button class="sm line" style="margin-top:8px" data-act="parseTyped">OK</button>
+ <div class="card ${d.trade?'':'miss'}"><b>${t('trade')}</b><div class="grid" style="margin-top:8px">
+  ${TRADES.map(x=>`<div class="tile ${d.trade===x.id?'sel':''}" data-act="pickTrade" data-id="${x.id}"><b>${x.ic}</b>${x[S.lang]}</div>`).join('')}</div></div>
+ <div class="card ${d.chowk?'':'miss'}"><b>${t('where')}</b><div class="chips" style="margin-top:8px">
+  ${S.data.chowks.map(c=>`<div class="chip ${d.chowk===c.id?'sel':''}" data-act="pickChowk" data-id="${c.id}">${c[S.lang]}</div>`).join('')}</div></div>
+ <div class="card"><div class="row"><b class="sp">${t('howmany')}</b><span class="stepper"><button data-act="cnt" data-d="-1">−</button> <b style="font-size:22px;padding:0 8px">${d.count}</b> <button data-act="cnt" data-d="1">+</button></span></div>
+  <div style="margin-top:12px"><b>${t('pay')}</b><input type="number" id="pay" value="${d.pay||(d.trade?trade(d.trade).pay:'')}" placeholder="700"></div>
+  <div style="margin-top:12px"><b>${t('when')}</b><div class="chips" style="margin-top:6px">
+  ${[0,1,2].map(i=>`<div class="chip ${d.date===i?'sel':''}" data-act="pickDate" data-d="${i}">${[t('today'),t('tomorrow'),t('dayafter')][i]}</div>`).join('')}</div></div>
+  <div id="price">${priceBox()}</div></div>
+ ${!ready?`<button class="big gray" disabled>${t('fillMore')}</button>`:low?`<button class="big no" data-act="topup">${t('lowWallet')}</button>`:`<button class="big ok" data-act="sendReq">📣 ${t('send')}</button>`}`}
+
+function vReq(){
+  const r=S.data.requests.find(x=>x.id===S.rid);if(!r)return vHome();
+  const taken=r.alerts.filter(a=>['accepted','done','disputed'].includes(a.status)).length;
+  const queued=r.alerts.some(a=>a.status==='queued');
+  const late=r.date<=dateStr(0);
+  const rows=r.alerts.map(a=>{const w=wk(a.workerId);let action='';
+    if(a.status==='accepted'){
+      action=`<div class="row" style="flex-wrap:wrap">${chatBtn(r.id,w.id,'employer',a)}
+       ${a.employerConfirmed?`<span class="mut">${t('waitWk')}</span>`:`<button class="sm ok" data-act="arrived" data-rid="${r.id}" data-w="${w.id}">${t('arrived')}</button>`}</div>
+       <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="sm line" data-act="cancel" data-rid="${r.id}" data-w="${w.id}" data-late="${late}">✖ ${t('cancel')}</button>
+       <button class="sm line" data-act="noshow" data-rid="${r.id}" data-w="${w.id}">🚫 ${t('noshow')}</button>
+       <button class="sm line" data-act="dispute" data-rid="${r.id}" data-w="${w.id}">⚠ ${t('dispute')}</button></div>`}
+    if(a.status==='disputed')action=chatBtn(r.id,w.id,'employer',a);
+    if(a.status==='done')action=`${chatBtn(r.id,w.id,'employer',a)} ${a.rating?`<span>${'★'.repeat(a.rating)}</span>`:`${t('rate')} ${stars(w.id,r.id)}`}`;
+    return `<div class="card job st-${a.status}"><div class="row"><span class="avatar">${trade(w.trade).ic}</span><div class="sp"><b>#${a.rank} ${esc(wname(w))}</b> ${badge(a)}<div class="mut">${trade(w.trade).ic} ${ckn(w.chowk)} · ${a.distKm} km · ⭐${w.rating} · ${w.confirmed} ${t('jobs')}</div>${payTag(a,'emp')}</div></div>${action?`<div style="margin-top:8px">${action}</div>`:''}</div>`}).join('');
+  return `${walletBar()}
+ <div class="card"><div class="row"><span class="avatar">${trade(r.trade).ic}</span><div class="sp"><b>${r.count} ${tn(r.trade)} · ${ckn(r.chowk)}</b><div class="mut">${dateLabel(r.date)} · ${rs(r.pay)}/${dayWord()} (+${rs(empFee(r.pay))})</div></div></div>
+  <div class="mut" style="margin-top:6px">${t('callSim')}</div><div class="mut">${taken}/${r.count} ${t('st_accepted')}</div></div>
+ ${queued&&taken<r.count?`<button class="big gray" data-act="nextwave" data-rid="${r.id}">➕ ${t('nextWave')}</button>`:''}
+ <h2>${t('alerts')}</h2>${rows||'<p class="mut">–</p>'}`}
+
+function vChat(){
+  const c=S.chat;if(!c)return vHome();
+  const r=S.data.requests.find(x=>x.id===c.rid),a=r&&r.alerts.find(x=>x.workerId===c.wid);if(!a)return vHome();
+  const w=wk(c.wid),me=c.role;
+  const who=me==='employer'?wname(w):(S.lang==='hi'?'मालिक':'Employer');
+  const open=['accepted','done','disputed'].includes(a.status);
+  return `<button class="sm line" data-act="chatBack">${t('back')}</button>
+ <div class="card"><div class="row"><span style="font-size:34px">${me==='employer'?trade(w.trade).ic:'🏠'}</span><div class="sp"><b>${esc(who)}</b><div class="mut">${r.count} ${tn(r.trade)} · ${ckn(r.chowk)} · ${dateLabel(r.date)}</div></div></div><div class="mut" style="margin-top:6px">${t('chatNote')}</div></div>
+ <div class="msgs">${a.messages.map(m=>`<div class="msg ${m.from===me?'me':''}">${m.voice?'🎤 ':''}${esc(m.text)}<button class="sm line" style="padding:2px 8px;margin-left:6px" data-act="sayText" data-text="${esc(m.text)}">🔊</button></div>`).join('')||'<p class="mut">…</p>'}</div>
+ ${open?`<div class="chips" style="margin:10px 0">${QUICK.map((q,i)=>`<div class="chip" data-act="quick" data-i="${i}">${q[S.lang]}</div>`).join('')}</div>
+ <div class="row"><input type="text" id="cmsg" placeholder="${t('msgPh')}" value="${esc(S.cd)}"><button class="sm" data-act="sendMsg">${t('sendMsg')}</button><button class="sm ${S.listening?'no':''}" data-act="micMsg">🎤</button></div>`:''}`}
+
+const PM={gpay:{ic:'📲',n:'Google Pay'},paytm:{ic:'📲',n:'Paytm'},phonepe:{ic:'📲',n:'PhonePe'},bhim:{ic:'📲',n:'BHIM UPI'},upi:{ic:'🔗',k:'otherUpi'},card:{ic:'💳',k:'cardM'}};
+const pmName=m=>PM[m].n||t(PM[m].k);
+function luhn(n){let s=0,alt=false;for(let i=n.length-1;i>=0;i--){let d=+n[i];if(alt){d*=2;if(d>9)d-=9}s+=d;alt=!alt}return n.length>=12&&s%10===0}
+function brand(n){return /^4/.test(n)?'Visa':/^(5[1-5]|2[2-7])/.test(n)?'Mastercard':/^(60|65|81|82|508)/.test(n)?'RuPay':/^3[47]/.test(n)?'Amex':'Card'}
+function newPay(){return {step:'pick',amount:1000,method:null,upi:'',card:{no:'',exp:'',cvv:''},err:'',txn:null}}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function vPay(){
+  const p=S.pay;if(!p)return vHome();
+  const back=`<button class="sm line" data-act="payBack">${t('back')}</button>`;
+  const banner=`<div class="card" style="background:#fff3bf;border-color:#ffe066"><b style="font-size:15px">${t('demoBanner')}</b></div>`;
+  if(p.step==='pick'){
+    const mine=S.data.txns.filter(x=>x.employerId===eid).slice(-4).reverse();
+    return `${back}<h2>${t('payTitle')}</h2>${banner}
+    <div class="card"><b>${t('amount')}</b><div class="chips" style="margin-top:8px">${[500,1000,2000,5000].map(a=>`<div class="chip ${p.amount===a?'sel':''}" data-act="payAmt" data-a="${a}">₹${a}</div>`).join('')}</div></div>
+    <div class="card"><b>${t('upiApps')}</b>${['gpay','paytm','phonepe','bhim','upi'].map(m=>`<div class="row" style="padding:12px 0;border-top:1px solid var(--line)" data-act="payMethod" data-m="${m}"><span style="font-size:26px">${PM[m].ic}</span><b class="sp">${pmName(m)}</b><span>›</span></div>`).join('')}</div>
+    <div class="card"><b>${t('cardsT')}</b><div class="row" style="padding:12px 0;border-top:1px solid var(--line)" data-act="payMethod" data-m="card"><span style="font-size:26px">💳</span><b class="sp">${pmName('card')}</b><span>›</span></div></div>
+    ${mine.length?`<h2>${t('history')}</h2>${mine.map(x=>`<div class="card row"><span class="sp">${PM[x.method]?pmName(x.method):x.method}${x.detail?' · '+esc(x.detail):''}</span><b>+₹${x.amount}</b></div>`).join('')}`:''}`}
+  if(p.step==='upiid')return `${back}<h2>${pmName('upi')}</h2>${banner}<div class="card"><b>${t('enterUpi')}</b><input type="text" id="upiid" placeholder="name@okaxis" value="${esc(p.upi)}" style="margin-top:8px" autocapitalize="off">${p.err?`<p style="color:var(--no)">${p.err}</p>`:''}</div><button class="big ok" data-act="payUpiGo">${t('cont')}</button>`;
+  if(p.step==='card')return `${back}<h2>${pmName('card')}</h2>${banner}<div class="card">
+    <input type="text" id="cno" inputmode="numeric" autocomplete="off" placeholder="${t('cardNo')}" value="${esc(p.card.no)}">
+    <div class="row" style="margin-top:8px"><input type="text" id="cexp" inputmode="numeric" autocomplete="off" placeholder="${t('expiry')}" value="${esc(p.card.exp)}"><input type="text" id="ccvv" inputmode="numeric" autocomplete="off" placeholder="${t('cvv')}" value="${esc(p.card.cvv)}"></div>
+    ${p.err?`<p style="color:var(--no)">${p.err}</p>`:''}<div class="mut" style="margin-top:8px">Test: 4111 1111 1111 1111 ✓ · 4000 0000 0000 0002 ✗</div></div>
+    <button class="big ok" data-act="payCardGo">${t('payBtn')} ₹${p.amount}</button>`;
+  if(p.step==='approve')return `${back}<h2>${pmName(p.method)}</h2>${banner}<div class="card" style="text-align:center"><div style="font-size:48px">📲</div><p>${t('approveMsg').replace('{app}',p.method==='upi'?p.upi:pmName(p.method)).replace('{amt}',p.amount)}</p><b style="font-size:26px">₹${p.amount}</b><div class="mut">Kaam Awaaz</div></div>
+    <button class="big ok" data-act="payApprove">${t('approved')}</button><button class="big no" data-act="payDecline">${t('declineBtn')}</button>`;
+  if(p.step==='processing')return `<div class="card" style="text-align:center;padding:40px"><div style="font-size:48px">⏳</div><h2>${t('processing')}</h2></div>`;
+  if(p.step==='done')return `<div class="card celebrate"><div class="confetti">${['🎉','✨','💚','🎊','⭐','🎉','✨','💚'].map((c,i)=>`<i style="left:${8+i*12}%;animation-delay:${(i%4)*.18}s">${c}</i>`).join('')}</div><div class="pop">✅</div><h2>${t('success')}</h2><b style="font-size:28px">+₹${p.amount}</b><div class="mut">${pmName(p.method)} · ${t('ref')} ${p.txn}</div><div style="margin-top:8px">${t('newBal')}: <b>${rs(balance())}</b></div></div><button class="big ok" data-act="payDone">${t('doneBtn')}</button>`;
+  return `<div class="card" style="text-align:center;padding:30px"><div style="font-size:56px">❌</div><h2>${t('failed')}</h2><p>${p.err}</p></div><button class="big" data-act="payAgain">${t('tryAgain')}</button><button class="big line" data-act="payBack">${t('back')}</button>`;
+}
+async function runPay(){
+  const p=S.pay;p.step='processing';render();await sleep(1500);
+  const num=p.card.no.replace(/\s/g,'');
+  if(p.method==='card'&&num==='4000000000000002'){p.step='fail';p.err=t('declinedCard');p.card={no:'',exp:'',cvv:''};render();return}
+  const detail=p.method==='card'?`${brand(num)} •••• ${num.slice(-4)}`:p.method==='upi'?p.upi:'';
+  p.card={no:'',exp:'',cvv:''};  // card data never leaves the page and is cleared right away
+  try{const r=await api('wallet',{employerId:eid,amount:p.amount,method:p.method,detail});p.txn=r.txn;p.step='done';await refresh()}
+  catch(e){p.step='fail';p.err=String(e.message||e);render()}
+}
+
+function newLg(){return {step:'phone',phone:'',otp:'',name:'',upi:'',trade:null,chowk:null,err:''}}
+function vWkLogin(){
+  const g=S.lg,err=g.err?`<p style="color:var(--no)">${g.err}</p>`:'';
+  if(g.step==='phone')return `<div class="card" style="text-align:center"><div style="font-size:48px">👷</div><h2 style="margin:4px 0">${t('wkWelcome')}</h2></div>
+   <input type="text" id="lphone" inputmode="numeric" maxlength="10" placeholder="${t('phoneNo')}" value="${esc(g.phone)}" style="font-size:24px;letter-spacing:2px">${err}
+   <button class="big ok" data-act="lgSend">${t('sendOtp')}</button><p class="note">${t('demoLogin')}</p>`;
+  if(g.step==='otp')return `<div class="card" style="text-align:center"><div style="font-size:48px">🔐</div><b>${esc(g.phone)}</b><div class="mut">${t('otpSent')}</div></div>
+   <input type="text" id="lotp" inputmode="numeric" maxlength="4" placeholder="${t('otpPh')}" value="${esc(g.otp)}" style="font-size:24px;letter-spacing:6px;text-align:center">${err}
+   <button class="big ok" data-act="lgVerify">${t('verifyOtp')}</button>`;
+  return `<h2>${t('newHere')}</h2>
+   <div class="card"><div class="row"><input type="text" id="rname" placeholder="${t('yourName')}" value="${esc(g.name)}"><button class="sm ${S.listening?'no':''}" data-act="micName">🎤</button></div></div>
+   <button class="mic ${S.listening?'on':''}" style="width:90px;height:90px;font-size:40px" data-act="micReg">🎤</button><p class="mut" style="text-align:center;margin:0">${t('sayAbout')}</p>
+   <div class="card ${g.trade?'':'miss'}"><b>${t('trade')}</b><div class="grid" style="margin-top:8px">${TRADES.map(x=>`<div class="tile ${g.trade===x.id?'sel':''}" data-act="regTrade" data-id="${x.id}"><b>${x.ic}</b>${x[S.lang]}</div>`).join('')}</div></div>
+   <div class="card ${g.chowk?'':'miss'}"><b>${t('where')}</b><div class="chips" style="margin-top:8px">${S.data.chowks.map(c=>`<div class="chip ${g.chowk===c.id?'sel':''}" data-act="regChowk" data-id="${c.id}">${c[S.lang]}</div>`).join('')}</div></div>
+   <div class="card"><b>${t('upi')}</b><input type="text" id="rupi" placeholder="name@okaxis" value="${esc(g.upi)}" style="margin-top:8px" autocapitalize="off"></div>${err}
+   <button class="big ok" data-act="join">${t('join')}</button>`}
+
+function vWk(){
+  const w=wk(S.wid);if(!w)return vWkLogin();
+  const mine=[];for(const r of S.data.requests){const a=r.alerts.find(x=>x.workerId===w.id);if(a&&a.status!=='queued')mine.push({r,a})}
+  mine.sort((x,y)=>y.r.created-x.r.created);
+  const newer=mine.filter(m=>m.a.status==='sent'),act=mine.filter(m=>['accepted','disputed'].includes(m.a.status)),past=mine.filter(m=>!['sent','accepted','disputed'].includes(m.a.status));
+  const rank=[...S.data.workers].filter(x=>x.trade===w.trade).sort((a,b)=>b.score-a.score).findIndex(x=>x.id===w.id)+1;
+  const card=({r,a})=>{const get=r.pay-wFee(r.pay);return `<div class="card job st-${a.status}"><div class="row"><span class="avatar">${trade(r.trade).ic}</span><div class="sp"><b>${ckn(r.chowk)} · ${dateLabel(r.date)}</b><div class="mut">${r.count} ${tn(r.trade)} · ${rs(r.pay)}/${dayWord()}</div></div>
+   <button class="sm line" data-act="say" data-rid="${r.id}">🔊</button></div>
+   <div class="money"><div><span>${t('youGet')} ${t('afterFee').replace('{p}',wpct())}</span><b>${rs(get)}</b></div></div>
+   ${a.status==='sent'?`<div class="row" style="margin-top:10px"><button class="big ok" style="margin:0" data-act="accept" data-rid="${r.id}">✅ ${t('yes')}</button><button class="big no" style="margin:0" data-act="decline" data-rid="${r.id}">❌ ${t('no')}</button></div>`:''}
+   ${a.status==='accepted'?`<div class="row" style="margin-top:10px;flex-wrap:wrap">${chatBtn(r.id,w.id,'worker',a)}${a.workerConfirmed?`<span class="mut">${t('waitEmp')}</span>`:`<button class="sm ok" data-act="finished" data-rid="${r.id}">✔ ${t('finished')}</button>`}</div>
+     <div class="row" style="margin-top:8px"><button class="sm line" data-act="withdraw" data-rid="${r.id}">↩ ${t('withdraw')}</button><button class="sm line" data-act="dispute" data-rid="${r.id}" data-w="${w.id}">⚠ ${t('dispute')}</button></div>`:''}
+   ${a.status==='disputed'?chatBtn(r.id,w.id,'worker',a):''}
+   <div style="margin-top:6px">${a.status==='sent'?'':badge(a)} ${payTag(a,'wk')}</div></div>`};
+  return `
+ <div class="prof"><div class="row"><span class="avatar big">${trade(w.trade).ic}</span><div class="sp"><b class="pn">${esc(wname(w))}</b><div>${tn(w.trade)} · ${ckn(w.chowk)}</div></div><button class="sm glass" data-act="wkLogout">↺ ${t('logout')}</button></div>
+  <div class="stats"><div><b>⭐ ${w.rating}</b><span>${t('rating')}</span></div><div><b>${w.confirmed}</b><span>${t('jobs')}</span></div><div><b>${rs(w.earned)}</b><span>${t('earned')}</span></div><div><b>#${rank}</b><span>${t('priority')}</span></div></div>
+  <div class="row pr"><span class="sp">💸 ${t('payoutTo')}: ${w.upiMask||'—'}</span><button class="sm glass" data-act="setUpi">✎</button>${w.noShows?`<span class="badge r">${t('noshows')} ${w.noShows}</span>`:''}</div></div>
+ ${newer.length?`<button class="mic ${S.listening?'on':''}" style="width:90px;height:90px;font-size:40px" data-act="micYesNo">🎤</button><p class="mut" style="text-align:center;margin:0">${t('sayYesNo')}</p>`:''}
+ <h2>${t('newAlerts')}</h2>${newer.map(card).join('')||`<p class="mut">${t('noAlerts')}</p>`}
+ ${act.length?`<h2>${t('active')}</h2>${act.map(card).join('')}`:''}
+ ${past.length?`<h2>${t('past')}</h2>${past.map(card).join('')}`:''}`}
+
+function vLedger(){
+  const ws=S.data.workers,all=S.data.requests.flatMap(r=>r.alerts.map(a=>({r,a}))).filter(x=>x.a.escrow);
+  const sum=(f)=>all.reduce((s,x)=>s+f(x.a),0);
+  const held=sum(a=>['held'].includes(a.payment)||a.status==='disputed'?a.escrow.wage+a.escrow.empFee:0);
+  const rel=all.filter(x=>x.a.payment==='released');
+  const revenue=rel.reduce((s,x)=>s+x.a.escrow.empFee+x.a.escrow.workerFee,0);
+  const paid=rel.reduce((s,x)=>s+x.a.payout,0);
+  const refunded=sum(a=>a.payment==='refunded'?a.escrow.wage+a.escrow.empFee:a.payment==='compensated'?a.escrow.wage+a.escrow.empFee-a.compensation:0);
+  const comp=sum(a=>a.compensation||0);
+  const disp=all.filter(x=>x.a.status==='disputed');
+  const top=[...ws].sort((a,b)=>b.score-a.score).slice(0,8);
+  const line=(k,v)=>`<div class="row"><span class="sp">${k}</span><b>${v}</b></div>`;
+  return `<h2>${t('totals')}</h2>
+ <div class="card">${line(t('reqs'),S.data.requests.length)}${line(t('topups'),rs(S.data.txns.reduce((s,x)=>s+x.amount,0))+' ('+S.data.txns.length+')')}${line('🔒 '+t('held'),rs(held))}${line('💸 '+t('paidOut'),rs(paid))}${line('↩ '+t('refunded'),rs(refunded))}${line(t('comp'),rs(comp))}${line('<b>'+t('revenue')+'</b>',rs(revenue))}
+  <div class="mut" style="margin-top:6px">${S.lang==='hi'?'शुल्क':'Fees'}: ${Math.round(S.data.config.empPct*100)}% ${S.lang==='hi'?'मालिक':'employer'} + ${wpct()}% ${S.lang==='hi'?'कारीगर':'worker'}</div></div>
+ ${disp.length?`<h2>⚠ ${t('disputes')}</h2>${disp.map(({r,a})=>`<div class="card"><b>${r.id} · ${esc(wname(wk(a.workerId)))}</b><div class="mut">${tn(r.trade)} · ${rs(a.escrow.wage+a.escrow.empFee)}</div><div class="row" style="margin-top:8px"><button class="sm ok" data-act="resolve" data-rid="${r.id}" data-w="${a.workerId}" data-o="pay">${t('payWorker')}</button><button class="sm line" data-act="resolve" data-rid="${r.id}" data-w="${a.workerId}" data-o="refund">${t('refundEmp')}</button></div></div>`).join('')}`:''}
+ <h2>${t('leaderboard')}</h2>${top.map((w,i)=>`<div class="card row"><b>${i+1}</b><span style="font-size:28px">${trade(w.trade).ic}</span><div class="sp"><b>${esc(wname(w))}</b><div class="mut">${ckn(w.chowk)} · ${w.confirmed} ${t('jobs')}</div></div><span>⭐${w.rating}</span></div>`).join('')}
+ <button class="sm line" data-act="reset" style="margin-top:14px">${t('reset')}</button><p class="note">${t('simNote')}</p>`}
+
+function render(){
+  if(!S.data)return;
+  document.querySelector('[data-act=lang]').textContent=t('lang');
+  const typing=document.activeElement&&document.activeElement.tagName==='INPUT';
+  if(typing&&S.auto)return;
+  const V={home:vHome,emp:vEmp,req:vReq,wkLogin:vWkLogin,wk:vWk,ledger:vLedger,chat:vChat,pay:vPay};
+  const changed=S._v!==S.view;S._v=S.view;const y=scrollY;$app.innerHTML=(V[S.view]||vHome)();scrollTo(0,changed?0:y);
+  if(changed){$app.classList.remove('fx');void $app.offsetWidth;$app.classList.add('fx')}
+}
+
+/* ---------- actions ---------- */
+function applyParsed(p,heard){
+  const d=S.draft;d.heard=heard;
+  if(p.trade)d.trade=p.trade;if(p.chowk)d.chowk=p.chowk;if(p.pay)d.pay=p.pay;if(p.count)d.count=p.count;if(p.date!==undefined)d.date=p.date;
+  S.listening=false;render();
+  if(d.trade&&d.chowk)speak((S.lang==='hi'?'सही है? ':'Is this right? ')+summary(d));else speak(t('fillMore'));
+}
+async function sendMsg(text,voice){
+  const c=S.chat;if(!text.trim())return;S.cd='';
+  await api(`requests/${c.rid}/message`,{workerId:c.wid,from:c.role,text,voice:!!voice});await refresh();
+}
+document.addEventListener('click',async e=>{
+  const el=e.target.closest('[data-act]');if(!el)return;
+  const a=el.dataset.act,id=el.dataset.id,rid=el.dataset.rid,w=el.dataset.w;
+  S.auto=false;
+  switch(a){
+   case 'home':S.view='home';render();break;
+   case 'lang':S.lang=S.lang==='hi'?'en':'hi';try{localStorage.lang=S.lang}catch(e){}document.documentElement.lang=S.lang;render();break;
+   case 'go':S.view=el.dataset.v;if(S.view==='emp')S.draft={trade:null,chowk:null,count:1,pay:null,date:1,heard:''};await refresh();break;
+   case 'topup':S.back=S.view;S.pay=newPay();S.view='pay';await refresh();break;
+   case 'payAmt':S.pay.amount=+el.dataset.a;render();break;
+   case 'payMethod':{const m=el.dataset.m;S.pay.method=m;S.pay.err='';S.pay.step=m==='card'?'card':m==='upi'?'upiid':'approve';render();break}
+   case 'payUpiGo':{const v=document.getElementById('upiid').value.trim();if(!/^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(v)){S.pay.err=t('badUpi');render();break}S.pay.upi=v;S.pay.err='';S.pay.step='approve';render();break}
+   case 'payCardGo':{const c=S.pay.card,n=c.no.replace(/\s/g,''),m=c.exp.match(/^(\d\d)\/(\d\d)$/);
+     const exp=m&&+m[1]>=1&&+m[1]<=12&&(2000+ +m[2])*12+ +m[1]>=new Date().getFullYear()*12+new Date().getMonth()+1;
+     if(!luhn(n)||!exp||!/^\d{3,4}$/.test(c.cvv)){S.pay.err=t('badCard');render();break}
+     S.pay.err='';await runPay();break}
+   case 'payApprove':await runPay();break;
+   case 'payDecline':S.pay.step='fail';S.pay.err=t('declinedUpi');render();break;
+   case 'payAgain':S.pay=newPay();render();break;
+   case 'payBack':if(S.pay&&S.pay.step!=='pick'&&S.pay.step!=='fail'){S.pay.step='pick';S.pay.err='';render()}else{S.view=S.back;S.pay=null;await refresh()}break;
+   case 'payDone':S.view=S.back;S.pay=null;await refresh();break;
+   case 'setUpi':{const v=prompt(t('enterPayout'),'');if(v){await api('payout',{workerId:S.wid,upi:v.trim()});await refresh()}break}
+   case 'micEmp':listen(txt=>applyParsed(parseSpeech(txt),txt));break;
+   case 'parseTyped':{const v=document.getElementById('typed').value;applyParsed(parseSpeech(v),v);break}
+   case 'pickTrade':S.draft.trade=id;S.draft.pay=null;render();break;
+   case 'pickChowk':S.draft.chowk=id;render();break;
+   case 'pickDate':S.draft.date=+el.dataset.d;render();break;
+   case 'cnt':S.draft.count=Math.max(1,Math.min(20,S.draft.count+ +el.dataset.d));render();break;
+   case 'sendReq':{const d=S.draft;const pay=+document.getElementById('pay').value||trade(d.trade).pay;
+     const r=await api('requests',{employerId:eid,trade:d.trade,chowk:d.chowk,count:d.count,pay,date:dateStr(d.date),heard:d.heard});
+     S.rid=r.requestId;S.view='req';await refresh();speak(t('callSim'));break}
+   case 'nextwave':await api(`requests/${rid}/nextwave`,{});await refresh();break;
+   case 'arrived':await api(`requests/${rid}/arrived`,{workerId:w});await refresh();break;
+   case 'cancel':if(confirm(el.dataset.late==='true'?t('confCancel'):t('confCancelEarly'))){await api(`requests/${rid}/cancel`,{workerId:w});await refresh()}break;
+   case 'noshow':if(confirm(t('confNoShow'))){await api(`requests/${rid}/noshow`,{workerId:w});await refresh()}break;
+   case 'dispute':await api(`requests/${rid}/dispute`,{workerId:w});await refresh();break;
+   case 'resolve':await api(`requests/${rid}/resolve`,{workerId:w,outcome:el.dataset.o});await refresh();break;
+   case 'rate':await api(`requests/${rid}/rate`,{workerId:w,stars:+el.dataset.n});await refresh();break;
+   case 'goWorker':await refresh();if(S.wid&&wk(S.wid)){S.view='wk'}else{S.wid=null;S.lg=newLg();S.view='wkLogin'}render();break;
+   case 'wkLogout':S.wid=null;try{localStorage.removeItem('wid')}catch(e){}S.lg=newLg();S.view='wkLogin';render();break;
+   case 'lgSend':{const v=document.getElementById('lphone').value.replace(/\D/g,'');S.lg.phone=v;if(!/^[6-9]\d{9}$/.test(v)){S.lg.err=t('badPhone')}else{S.lg.err='';S.lg.step='otp'}render();break}
+   case 'lgVerify':{const g=S.lg;try{const r=await api('login',{phone:g.phone,otp:document.getElementById('lotp').value});
+       if(r.workerId){S.wid=r.workerId;try{localStorage.wid=S.wid}catch(e){}S.view='wk';await refresh()}else{g.step='register';g.err='';render()}}catch(e){g.err=String(e.message||e);render()}break}
+   case 'micName':listen(txt=>{S.lg.name=txt.trim().slice(0,30);S.listening=false;render()});break;
+   case 'micReg':listen(txt=>{const p=parseSpeech(txt);if(p.trade)S.lg.trade=p.trade;if(p.chowk)S.lg.chowk=p.chowk;S.listening=false;render()});break;
+   case 'regTrade':S.lg.trade=id;render();break;case 'regChowk':S.lg.chowk=id;render();break;
+   case 'join':{const g=S.lg;if(!g.name.trim()||!g.trade||!g.chowk){g.err=t('regMissing');render();break}try{const r=await api('workers',{name:g.name,phone:g.phone,upi:g.upi,trade:g.trade,chowk:g.chowk});
+       S.wid=r.workerId;try{localStorage.wid=S.wid}catch(e){}S.view='wk';await refresh()}catch(e){g.err=String(e.message||e);render()}break}
+   case 'say':speak(reqLine(S.data.requests.find(x=>x.id===rid)));break;
+   case 'sayText':speak(el.dataset.text);break;
+   case 'accept':await api(`requests/${rid}/accept`,{workerId:S.wid});await refresh();break;
+   case 'decline':await api(`requests/${rid}/decline`,{workerId:S.wid});await refresh();break;
+   case 'finished':await api(`requests/${rid}/done`,{workerId:S.wid});await refresh();break;
+   case 'withdraw':if(confirm(t('confWithdraw'))){await api(`requests/${rid}/withdraw`,{workerId:S.wid});await refresh()}break;
+   case 'openChat':S.back=S.view;S.chat={rid,wid:w,role:el.dataset.role};S.cd='';S.view='chat';await refresh();break;
+   case 'chatBack':S.view=S.back;S.chat=null;render();break;
+   case 'sendMsg':await sendMsg(document.getElementById('cmsg').value,false);break;
+   case 'quick':await sendMsg(QUICK[+el.dataset.i][S.lang],false);break;
+   case 'micMsg':listen(async txt=>{S.listening=false;await sendMsg(txt,true)});break;
+   case 'micYesNo':{
+     const first=S.data.requests.filter(r=>{const x=r.alerts.find(a=>a.workerId===S.wid);return x&&x.status==='sent'}).sort((a,b)=>b.created-a.created)[0];
+     if(first)speak(reqLine(first));
+     setTimeout(()=>listen(async txt=>{S.listening=false;const s=txt.toLowerCase();
+       const yes=/हाँ|हां|हा |ठीक|जी|yes|haan|ha |ok|theek/.test(s+' '),no=/ना|नहीं|नही|no|nahi/.test(s);
+       if(first&&yes&&!no)await api(`requests/${first.id}/accept`,{workerId:S.wid});
+       else if(first&&no)await api(`requests/${first.id}/decline`,{workerId:S.wid});
+       await refresh()}),first?3500:0);break}
+   case 'reset':if(confirm('Reset?')){await api('reset',{});S.rid=null;S.wid=null;await refresh()}break;
+  }
+});
+document.addEventListener('input',e=>{const i=e.target.id;
+  if(i==='typed')S.draft.heard=e.target.value;
+  if(i==='pay'){S.draft.pay=+e.target.value||null;const p=document.getElementById('price');if(p)p.innerHTML=priceBox()}
+  if(S.pay&&i==='upiid')S.pay.upi=e.target.value;
+  if(S.pay&&i==='cno'){const v=e.target.value.replace(/\D/g,'').slice(0,19).replace(/(.{4})/g,'$1 ').trim();e.target.value=v;S.pay.card.no=v}
+  if(S.pay&&i==='cexp'){let v=e.target.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);e.target.value=v;S.pay.card.exp=v}
+  if(S.pay&&i==='ccvv'){const v=e.target.value.replace(/\D/g,'').slice(0,4);e.target.value=v;S.pay.card.cvv=v}
+  if(S.lg&&i==='lphone')S.lg.phone=e.target.value.replace(/\D/g,'');
+  if(S.lg&&i==='lotp')S.lg.otp=e.target.value;
+  if(S.lg&&i==='rname'){S.lg.name=e.target.value}
+  if(S.lg&&i==='rupi')S.lg.upi=e.target.value;if(i==='cmsg')S.cd=e.target.value});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='cmsg')sendMsg(e.target.value,false)});
+setInterval(async()=>{if(!S.data||S.listening)return;if(['emp','wkLogin','pay'].includes(S.view))return;S.auto=true;try{S.data=await api('state');render()}catch(e){}S.auto=false},3000);
+try{S.wid=localStorage.wid||null}catch(e){}
+refresh();
+</script>
+</body>
+</html>
